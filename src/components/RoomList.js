@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { format } from 'url';
+import NewRoom from './NewRoom';
 
 class RoomList extends Component {
     constructor(props) {
@@ -21,12 +23,14 @@ class RoomList extends Component {
         console.log(this.state.rooms)
       return (
         <div className="RoomList">
+          <NewRoom roomsRef={this.roomsRef}/>
             <ul>{this.state.rooms.map(room => 
                 <li key={room.key}>
                   {room.name}
                 </li>
               )}
             </ul>
+            
         </div>
   
       );
@@ -35,3 +39,7 @@ class RoomList extends Component {
   
   export default RoomList;
   
+
+//Add a form to create a room
+// there should be a submit button that executes a createRoom method that 
+//pushes a new room to Firebase
