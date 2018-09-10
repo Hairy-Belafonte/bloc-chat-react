@@ -15,13 +15,12 @@ export default class NewRoom extends Component {
     }
     createRoom(e) {
         e.preventDefault();
-        //grab this.state.roomName
-        //send it to firebase
-        //clear out newRoom state prop
+        
         if(this.state.roomName !== ""){
             this.props.roomsRef.push({
                 name: this.state.roomName
             });
+            this.setState({ roomName: '' });
         }
     }
     render() {
@@ -35,7 +34,8 @@ export default class NewRoom extends Component {
                     value={this.state.roomName}
                     onChange={this.handleChange}/>
               </label>
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Submit"
+                    onChange={this.handleSubmit}/>
             </form>
         </div>
   
