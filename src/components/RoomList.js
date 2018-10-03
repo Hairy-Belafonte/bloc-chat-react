@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { format } from 'url';
 import NewRoom from './NewRoom';
+import MessageList from './MessageList';
 
 class RoomList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            rooms: []
+            rooms: [],
         };
         this.roomsRef = this.props.firebase.database().ref('rooms');
+        this.clickHandler = this.props.roomClick
     }
 
     componentDidMount() {
@@ -20,17 +22,19 @@ class RoomList extends Component {
     }
 
     render() {
-        console.log(this.state.rooms)
       return (
         <div className="RoomList">
           <NewRoom roomsRef={this.roomsRef}/>
             <ul>{this.state.rooms.map(room => 
-                <li key={room.key}>
+                <li key={room.key} onClick={e => {
+                  e.preventDefault()
+                  console.log(room.roomId)
+                  this.clickHandler(room.roomId)
+                }}>
                   {room.name}
                 </li>
               )}
             </ul>
-            
         </div>
   
       );

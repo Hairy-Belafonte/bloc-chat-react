@@ -34,8 +34,7 @@ export default class NewRoom extends Component {
                     value={this.state.roomName}
                     onChange={this.handleChange}/>
               </label>
-              <input type="submit" value="Submit"
-                    onChange={this.handleSubmit}/>
+              <input type="submit" value="Submit"/>
             </form>
         </div>
   
