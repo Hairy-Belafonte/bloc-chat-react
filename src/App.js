@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/Username';
 
 import * as firebase from 'firebase';
 var config = {
@@ -22,6 +23,11 @@ class App extends Component {
         selectedRoom: 1
     };
   }
+  setUser = (user) => {
+    this.setState (
+      {user: user}
+    )
+  }
 
   render() {
     const updateRoom = roomId => this.setState({...this.state, selectedRoom : roomId})
@@ -30,6 +36,7 @@ class App extends Component {
       <div className="App">
         <RoomList firebase={firebase} roomClick={updateRoom} />
         <MessageList firebase={firebase} selectedRoom={this.state.selectedRoom}/>
+        <User firebase={firebase} setUser={this.setUser} user={this.state.user}/>
       </div>
     );
   }
