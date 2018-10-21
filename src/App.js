@@ -16,17 +16,17 @@ var config = {
 firebase.initializeApp(config);
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        selectedRoom: 1
+        selectedRoom: "",
+        user: ""
     };
   }
-  setUser = (user) => {
-    this.setState (
-      {user: user}
-    )
+  setUser(user){
+    this.setState({user: user});
   }
 
   render() {
@@ -36,12 +36,10 @@ class App extends Component {
       <div className="App">
         <RoomList firebase={firebase} roomClick={updateRoom} />
         <MessageList firebase={firebase} selectedRoom={this.state.selectedRoom}/>
-        <User firebase={firebase} setUser={this.setUser} user={this.state.user}/>
+        <User firebase={firebase} setUser={this.setUser.bind(this)} user={this.state.user}/>
       </div>
     );
   }
 }
-
-
 
 export default App;
