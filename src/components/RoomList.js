@@ -26,11 +26,7 @@ class RoomList extends Component {
         <div className="RoomList">
           <NewRoom roomsRef={this.roomsRef}/>
             <ul>{this.state.rooms.map(room => 
-                <li key={room.key} onClick={e => {
-                  e.preventDefault()
-                  console.log(room.roomId)
-                  this.clickHandler(room.roomId)
-                }}>
+                <li key={room.key} onClick={() => this.props.setSelectedRoom(room)}>
                   {room.name}
                 </li>
               )}

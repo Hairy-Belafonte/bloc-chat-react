@@ -28,14 +28,17 @@ class App extends Component {
   setUser(user){
     this.setState({user: user});
   }
+  setSelectedRoom(room) {
+    this.setState({ selectedRoom: room });
+  }
 
   render() {
     const updateRoom = roomId => this.setState({...this.state, selectedRoom : roomId})
 
     return (
       <div className="App">
-        <RoomList firebase={firebase} roomClick={updateRoom} />
-        <MessageList firebase={firebase} selectedRoom={this.state.selectedRoom}/>
+        <RoomList firebase={firebase} setSelectedRoom={this.setSelectedRoom.bind(this)} roomClick={updateRoom} />
+        <MessageList firebase={firebase} selectedRoom={this.state.selectedRoom.key} />
         <User firebase={firebase} setUser={this.setUser.bind(this)} user={this.state.user}/>
       </div>
     );
